@@ -8,6 +8,8 @@
                 <li><a href="{{ url('/') }}" class="hover:text-blue-500">Cocineros</a></li>
                 <li><a href="{{ url('/') }}" class="hover:text-blue-500">Contacto</a></li>
                 <li><a href="{{ url('/') }}" class="hover:text-blue-500">Carrito</a></li>
+                <li><a href="{{ route('register.client') }}">Registrarme como Cliente</a></li>
+                <li><a href="{{ route('register.cook') }}">Registrarme como Cocinero</a></li>
 
             </ul>
         </div>
