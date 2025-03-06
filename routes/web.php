@@ -4,10 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeccionEspecialController;
 
-Route::middleware(['auth', 'cliente'])->group(function () {
-    Route::get('/zona-cliente', [SeccionEspecialController::class, 'index'])
-        ->name('zona.cliente');
-});
+
+
+
 
 
 Route::get('/', function (): string {
@@ -22,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+Route::middleware(['auth', 'cliente'])->group(function () {
+    Route::get('/zona-cliente', [SeccionEspecialController::class, 'index'])->name('zona.cliente');
 });
 
 require __DIR__.'/auth.php';

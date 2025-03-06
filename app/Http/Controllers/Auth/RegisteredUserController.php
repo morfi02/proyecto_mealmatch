@@ -50,6 +50,6 @@ class RegisteredUserController extends Controller
         }
 
         // Si no es cliente (por si más adelante metes admins u otros roles)
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }
