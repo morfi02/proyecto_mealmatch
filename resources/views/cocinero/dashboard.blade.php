@@ -3,8 +3,8 @@
 @section('title', 'Dashboard del Cocinero - TuApp')
 
 @section('content')
-<!-- Sección Hero (igual que antes) -->
-<section class="bg-cover bg-center h-[400px] text-white flex items-center" style="background-image: url('{{ asset('images/cocina.png') }}');">
+<!-- Sección Hero  -->
+<section class="bg-cover bg-center h-96 text-white flex items-center" style="background-image: url('{{ asset('images/cocina.png') }}');">
     <div class="container mx-auto text-center">
         <h1 class="text-5xl font-bold">Bienvenido, {{ Auth::user()->name }}</h1>
         <p class="text-xl mt-4">Cada plato que creas es una obra de arte. ¡Sigue cocinando con pasión!</p>
@@ -31,7 +31,7 @@
     <!-- Columna Derecha: Formulario y lista de platos -->
     <main class="col-span-8">
 
-        <!-- Formulario para publicar plato (oculto por defecto) -->
+        
         <div id="formContainer" class="hidden bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">
             <h2 class="text-3xl font-bold text-center text-[#6B5B95] mb-6">Publicar Nuevo Plato</h2>
             <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
@@ -82,7 +82,7 @@
 
 </div>
 
-<!-- Script para mostrar/ocultar el formulario -->
+
 <script>
     document.getElementById('toggleFormButton').addEventListener('click', function() {
         var formContainer = document.getElementById('formContainer');
