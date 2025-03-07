@@ -3,13 +3,16 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeccionEspecialController;
-
+use App\Http\Controllers\UsuariosController;
 
 
 
 
 
 Route::get('/', function (): string {
+    return view('welcome'); 
+})->name('home');
+Route::get('', function (): string {
     return view('welcome'); 
 })->name('home');
 
@@ -22,8 +25,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth', 'cliente'])->group(function () {
-    Route::get('/zona-cliente', [SeccionEspecialController::class, 'index'])->name('zona.cliente');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cliente/dashboard', [UsuariosController::class, 'clienteDashboard'])->name('cliente.dashboard');
+    Route::get('/cocinero/dashboard', [UsuariosController::class, 'cocineroDashboard'])->name('cocinero.dashboard');
 });
+
+
 
 require __DIR__.'/auth.php';

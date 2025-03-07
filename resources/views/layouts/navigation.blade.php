@@ -5,9 +5,14 @@
         <div class="space-x-4">
             <a href="{{ route('home') }}" class="hover:underline">Inicio</a>
             @auth
-                @if(Auth::user()->rol === 'cliente')
-                    <a href="{{ route('zona.cliente') }}" class="hover:underline">Zona Cliente</a>
+                @if (Auth::check())
+                    @if (Auth::user()->rol === 'cliente')
+                        <a href="{{ route('cliente.dashboard') }}">Panel Cliente</a>
+                    @elseif (Auth::user()->rol === 'cocinero')
+                        <a href="{{ route('cocinero.dashboard') }}">Panel Cocinero</a>
+                    @endif
                 @endif
+
                 <a href="{{ route('profile.edit') }}" class="hover:underline">Perfil</a>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf

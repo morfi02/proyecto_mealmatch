@@ -38,7 +38,6 @@
     <div class="background-image"></div>
 
     <div class="form-container">
-        <!-- Logo/Nombre como enlace a la página principal -->
         <div class="text-center mb-6">
             <a href="{{ route('home') }}" class="text-3xl font-bold text-[#FF6F61] hover:underline">
                 MEALMATCH
