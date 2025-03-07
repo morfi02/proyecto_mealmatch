@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeccionEspecialController;
 use App\Http\Controllers\UsuariosController;
-
+use App\Http\Controllers\DishController;
 
 
 
@@ -28,7 +28,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cliente/dashboard', [UsuariosController::class, 'clienteDashboard'])->name('cliente.dashboard');
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/cocinero/dashboard', [UsuariosController::class, 'cocineroDashboard'])->name('cocinero.dashboard');
+    Route::resource('dishes', DishController::class)->only(['store']);
 });
 
 

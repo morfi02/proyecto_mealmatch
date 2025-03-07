@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
 }
+
