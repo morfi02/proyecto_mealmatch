@@ -16,7 +16,7 @@ return new class extends Migration {
         $table->text('description');
         $table->decimal('price', 8, 2);
         $table->string('image');
-        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relación con User
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
         $table->timestamps();
     });
 }

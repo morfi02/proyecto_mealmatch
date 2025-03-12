@@ -11,14 +11,16 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-   
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 
 <body style="background-color: #FFF3E0;">
 
 
     <!-- Navegación -->
-    @include('layouts.navigation')
+    @include('layouts.cocinero_navigation')
 
     <!-- Contenido Principal -->
     <main class="mt-0">

@@ -22,17 +22,20 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cliente/dashboard', [UsuariosController::class, 'clienteDashboard'])->name('cliente.dashboard');
+    Route::get('/cliente/cocinero/{id}', [UsuariosController::class, 'showCocinero'])->name('cliente.cocinero.show');
+    Route::get('/cocineros/{id}', [UsuariosController::class, 'show'])->name('cocineros.show');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cocinero/dashboard', [UsuariosController::class, 'cocineroDashboard'])->name('cocinero.dashboard');
-    Route::resource('dishes', DishController::class)->only(['store']);
+    Route::resource('dishes', DishController::class);
 });
 
 

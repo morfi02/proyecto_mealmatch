@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.cocinero_app')
 
 @section('title', 'Dashboard del Cocinero - TuApp')
 
@@ -6,15 +6,15 @@
 <!-- Sección Hero  -->
 <section class="bg-cover bg-center h-96 text-white flex items-center" style="background-image: url('{{ asset('images/cocina.png') }}');">
     <div class="container mx-auto text-center">
-        <h1 class="text-5xl font-bold">Bienvenido, {{ Auth::user()->name }}</h1>
-        <p class="text-xl mt-4">Cada plato que creas es una obra de arte. ¡Sigue cocinando con pasión!</p>
-        <button id="toggleFormButton" class="mt-6 inline-block bg-[#FF6F61] text-white text-lg font-semibold py-3 px-6 rounded-lg hover:bg-[#FF8C7F] transition duration-300">
+        <h1 class="text-5xl font-bold animate__animated animate__bounceInLeft">Bienvenido, {{ Auth::user()->name }}</h1>
+        <p class="text-xl mt-4 animate__animated animate__bounceInLeft">Cada plato que creas es una obra de arte. ¡Sigue cocinando con pasión!</p>
+        <button id="toggleFormButton" class="mt-6 inline-block bg-blue-500 text-white text-lg font-semibold py-3 px-6 rounded-lg hover:bg-[#FF8C7F] transition duration-300 animate__animated animate__bounce">
             Publicar Nuevo Plato
         </button>
     </div>
 </section>
 
-<!-- Contenido dividido en 2 columnas -->
+<!-- Contenido  -->
 <div class="container mx-auto grid grid-cols-12 gap-6 mt-10">
 
     <!-- Columna Izquierda: Estadísticas -->
@@ -64,20 +64,42 @@
 
         <!-- Lista de platos -->
         <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
-            <h2 class="text-2xl font-bold text-[#6B5B95] mb-4">Tus Platos</h2>
-            <div class="grid grid-cols-2 gap-4">
-                @foreach($dishes as $dish)
-                <div class="bg-[#F0F8FF] rounded-lg shadow hover:shadow-md transition duration-200 overflow-hidden">
-                    <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->name }}" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-[#6B5B95]">{{ $dish->name }}</h3>
-                        <p class="text-sm text-gray-600 line-clamp-2 mb-2">{{ $dish->description }}</p>
-                        <p class="text-[#FF6F61] font-bold text-lg">${{ number_format($dish->price, 2) }}</p>
-                    </div>
+                <h2 class="text-2xl font-bold text-[#6B5B95] mb-4">Tus Platos</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach($dishes as $dish)
+                        <div class="bg-[#F0F8FF] rounded-lg shadow hover:shadow-md transition duration-200 overflow-hidden">
+                            <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->name }}"
+                                class="w-full h-40 object-cover">
+
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-[#6B5B95]">{{ $dish->name }}</h3>
+                                <p class="text-sm text-gray-600 line-clamp-2 mb-2">{{ $dish->description }}</p>
+                                <p class="text-[#FF6F61] font-bold text-lg">${{ number_format($dish->price, 2) }}</p>
+                                <div class="mt-4 flex justify-end items-center space-x-4">
+                                    <a href="{{ route('dishes.edit', $dish->id) }}"
+                                        class="group flex items-center space-x-1 text-gray-600 hover:text-blue-500 transition-all duration-200">
+                                        <span
+                                            class="">Editar</span>
+                                        
+                                    </a>
+                                    <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="group flex items-center space-x-1 text-gray-600 hover:text-red-500 transition-all duration-200"
+                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este plato?')">
+                                            <span
+                                                class="">Eliminar</span>
+                                            
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
     </main>
 
 </div>
